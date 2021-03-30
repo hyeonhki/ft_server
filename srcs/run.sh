@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 권한설정 < 뭔데?
+# 권한설정
 chmod 775 /run.sh
 chown -R www-data:www-data /var/www/
 chmod -R 755 /var/www/
@@ -24,9 +24,13 @@ cp -rp ./tmp/wp-config.php /var/www/html/wordpress
 service mysql start
 echo "CREATE DATABASE IF NOT EXISTS wordpress;" \
 	| mysql -u root --skip-password
-echo "CREATE USER IF NOT EXISTS 'hyeonhki'@'localhost' IDENTIFIED BY 'hyeonhki';" \
+echo "CREATE USER IF NOT EXISTS 'root'@'localhost' IDENTIFIED BY '';" \
 	| mysql -u root --skip-password
-echo "GRANT ALL PRIVILEGES ON wordpress.* TO 'hyeonhki'@'localhost' WITH GRANT OPTION;" \
+echo "GRANT ALL PRIVILEGES ON wordpress.* TO 'root'@'localhost' WITH GRANT OPTION;" \
+	| mysql -u root --skip-password
+echo "FLUSH PRIVILEGES;" \
+	| mysql -u root --skip-password
+echo "update mysql.user set plugin = 'mysql_native_password' where user='root';" \
 	| mysql -u root --skip-password
 
 # phpmyadmin 설정
