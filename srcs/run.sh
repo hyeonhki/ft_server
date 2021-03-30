@@ -28,8 +28,6 @@ echo "CREATE USER IF NOT EXISTS 'hyeonhki'@'localhost' IDENTIFIED BY 'hyeonhki';
 	| mysql -u root --skip-password
 echo "GRANT ALL PRIVILEGES ON wordpress.* TO 'hyeonhki'@'localhost' WITH GRANT OPTION;" \
 	| mysql -u root --skip-password
-echo "FLUSH PRIVILEGES;" \
-	| mysql -u root --skip-password
 
 # phpmyadmin 설정
 wget https://files.phpmyadmin.net/phpMyAdmin/5.0.2/phpMyAdmin-5.0.2-all-languages.tar.gz
